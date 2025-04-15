@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Deals Hub - Premium Digital Products for MMO</title>
+    <meta name="description" content="Digital Deals Hub offers premium digital products including email accounts, social media accounts, and software keys for MMO professionals worldwide.">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #27ae60;
+            --primary-dark: #219653;
+            --secondary-color: #34d399;
+            --accent-color: #f59e0b;
+            --dark-color: #1f2937;
+            --light-color: #f9fafb;
+            --gray-color: #6b7280;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-secondary {
+            background-color: white;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-card {
+            transition: all 0.3s ease;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-card {
+            transition: all 0.3s ease;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-card .discount-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-weight: 600;
+            font-size: 0.75rem;
+        }
+        
+        .product-card .card-buttons {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .product-card:hover .card-buttons {
+            opacity: 1;
+        }
+        
+        .hero-section {
+            background: linear-gradient(to right, rgba(39, 174, 96, 0.8), rgba(52, 211, 153, 0.8)), url('https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&q=80&w=1200');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stats-container {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .search-container {
+            position: relative;
+            z-index: 10;
+            margin-top: -2rem;
+        }
+        
+        .tab-active {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 0.375rem;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: white;
+            z-index: 50;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header Section -->
+    <header class="bg-white shadow-md sticky top-0 z-30">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <span class="text-2xl font-bold text-gray-800">Digital<span class="text-green-500">Deals</span>Hub</span>
+                    </a>
+                </div>
+
+                <!-- Navigation - Desktop -->
+                <nav class="hidden md:flex space-x-6">
+                    <a href="index.html" class="text-gray-800 hover:text-green-500 font-medium">Home</a>
+                    <div class="dropdown">
+                        <a href="#" class="text-gray-800 hover:text-green-500 font-medium">Products <i class="fas fa-chevron-down text-xs ml-1"></i></a>
+                        <div class="dropdown-content mt-2 p-2">
+                            <a href="category.html?cat=email" class="block px-4 py-2 text-sm hover:bg-green-100 rounded">Email Accounts</a>
+                            <a href="category.html?cat=account" class="block px-4 py-2 text-sm hover:bg-green-100 rounded">Social Media Accounts</a>
+                            <a href="category.html?cat=other" class="block px-4 py-2 text-sm hover:bg-green-100 rounded">Other Products</a>
+                        </div>
+                    </div>
+                    <a href="about.html" class="text-gray-800 hover:text-green-500 font-medium">About Us</a>
+                    <a href="contact.html" class="text-gray-800 hover:text-green-500 font-medium">Contact</a>
+                    <a href="faq.html" class="text-gray-800 hover:text-green-500 font-medium">FAQ</a>
+                </nav>
+
+                <!-- Right Menu Items -->
+                <div class="flex items-center space-x-4">
+                    <!-- Language Selector -->
+                    <div class="dropdown hidden md:block">
+                        <button class="flex items-center text-sm text-gray-800">
+                            <span class="mr-1">EN</span>
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </button>
+                        <div class="dropdown-content mt-2 p-2 right-0">
+                            <a href="#" class="block px-4 py-2 text-sm hover:bg-green-100 rounded">English</a>
+                            <a href="#" class="block px-4 py-2 text-sm hover:bg-green-100 rounded">Español</a>
+                            <a href="#" class="block px-4 py-2 text-sm hover:bg-green-100 rounded">Português</a>
+                        </div>
+                    </div>
+
+                    <!-- Search Button (Mobile) -->
+                    <button class="md:hidden text-gray-800 hover:text-green-500">
+                        <i class="fas fa-search"></i>
+                    </button>
+
+                    <!-- Cart -->
+                    <a href="cart.html" class="text-gray-800 hover:text-green-500 relative">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="absolute -top-2 -right-2 bg-green-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">3</span>
+                    </a>
+
+                    <!-- User -->
+                    <div class="dropdown hidden md:block">
+                        <button class="text-gray-800 hover:text-green-500">
+                            <i class="fas fa-user"></i>
+                        </button>
+                        <div class="dropdown-content mt-2 p-2 right-0">
+                            <a href="login.html" class="block px-4 py-2 text-sm hover:bg-green-100 rounded">Login</a>
+                            <a href="register.html" class="block px-4 py-2 text-sm hover:bg-green-100 rounded">Register</a>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Menu Button -->
+                    <button class="md:hidden text-gray-800 hover:text-green-500" id="mobile-menu-button">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="flex justify-between items-center mb-6">
+            <span class="text-2xl font-bold text-gray-800">Digital<span class="text-green-500">Deals</span>Hub</span>
+            <button id="close-menu-button">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+        </div>
+        <nav class="flex flex-col space-y-4">
+            <a href="index.html" class="text-gray-800 hover:text-green-500 font-medium py-2 border-b">Home</a>
+            <div class="py-2 border-b">
+                <button class="flex justify-between items-center w-full text-left text-gray-800 font-medium" id="mobile-products-btn">
+                    Products
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="hidden mt-2 ml-4 space-y-2" id="mobile-products-submenu">
+                    <a href="category.html?cat=email" class="block text-gray-600 hover:text-green-500">Email Accounts</a>
+                    <a href="category.html?cat=account" class="block text-gray-600 hover:text-green-500">Social Media Accounts</a>
+                    <a href="category.html?cat=other" class="block text-gray-600 hover:text-green-500">Other Products</a>
+                </div>
+            </div>
+            <a href="about.html" class="text-gray-800 hover:text-green-500 font-medium py-2 border-b">About Us</a>
+            <a href="contact.html" class="text-gray-800 hover:text-green-500 font-medium py-2 border-b">Contact</a>
+            <a href="faq.html" class="text-gray-800 hover:text-green-500 font-medium py-2 border-b">FAQ</a>
+            
+            <div class="pt-4">
+                <a href="login.html" class="btn-primary block text-center mb-2">Login</a>
+                <a href="register.html" class="btn-secondary block text-center">Register</a>
+            </div>
+            
+            <div class="pt-4 flex space-x-4 justify-center">
+                <button class="px-4 py-2 border rounded">EN</button>
+                <button class="px-4 py-2 border rounded">ES</button>
+                <button class="px-4 py-2 border rounded">PT</button>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section py-16 md:py-24">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl mx-auto text-center text-white">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Premium Digital Products for MMO Success</h1>
+                <p class="text-lg md:text-xl mb-8">Access high-quality accounts, software, and services to maximize your Make Money Online potential. Trusted by over 10,000 professionals worldwide.</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#categories" class="btn-primary">Explore Products</a>
+                    <a href="#featured" class="btn-secondary">Popular Items</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Bar Section -->
+    <section class="search-container">
+        <div class="container mx-auto px-4">
+            <div class="bg-white rounded-lg shadow-lg p-4 md:p-6 max-w-3xl mx-auto">
+                <form action="search.html" method="get" class="flex flex-col md:flex-row gap-4">
+                    <div class="flex-grow relative">
+                        <input type="text" name="q" placeholder="Search for products, accounts, or keys..." class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                        <button type="submit" class="absolute right-3 top-3 text-gray-400 hover:text-green-500">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <button type="submit" class="btn-primary px-8">Search</button>
+                </form>
+                <div class="mt-3 flex flex-wrap gap-2">
+                    <span class="text-sm text-gray-500">Popular:</span>
+                    <a href="search.html?q=gmail" class="text-sm text-green-600 hover:underline">Gmail Accounts</a>
+                    <a href="search.html?q=facebook" class="text-sm text-green-600 hover:underline">Facebook Accounts</a>
+                    <a href="search.html?q=windows" class="text-sm text-green-600 hover:underline">Windows Keys</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Categories Section -->
+    <section id="categories" class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800">Main Categories</h2>
+                <p class="text-gray-600 mt-2">Explore our wide range of digital products for your MMO business</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Email Category -->
+                <div class="category-card bg-white shadow-md p-6 text-center">
+                    <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center">
+                        <i class="fas fa-envelope text-3xl text-green-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Email Accounts</h3>
+                    <p class="text-gray-600 mb-4">High-quality email accounts for your marketing and business needs</p>
+                    <div class="flex flex-wrap justify-center gap-2 mb-6">
+                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Gmail</span>
+                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Hotmail</span>
+                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Outlook</span>
+                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Yahoo</span>
+                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">More</span>
+                    </div>
+                    <a href="category.html?cat=email" class="text-green-500 hover:text-green-700 font-medium inline-flex items-center">
+                        View All <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Account Category -->
+                <div class="category-card bg-white shadow-md p-6 text-center">
+                    <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center">
+                        <i class="fas fa-user-circle text-3xl text-green-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Social Accounts</h3>
+                    <p class="text-gray-600 mb-4">Verified accounts for social media marketing and promotion</p>
+                    <div class="flex flex-wrap justify-center gap-2 mb-6">
+                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Facebook</span>
+                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Instagram</span>
+                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Twitter</span>
+                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">TikTok</span>
+                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">More</span>
+                    </div>
+                    <a href="category.html?cat=account" class="text-green-500 hover:text-green-700 font-medium inline-flex items-center">
+                        View All <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Other Category -->
+                <div class="category-card bg-white shadow-md p-6 text-center">
+                    <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center">
+                        <i class="fas fa-key text-3xl text-green-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Software & Keys</h3>
+                    <p class="text-gray-600 mb-4">Genuine software keys and digital tools for productivity</p>
+                    <div class="flex flex-wrap justify-center gap-2 mb-6">
+                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Windows</span>
+                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Office</span>
+                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Antivirus</span>
+                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">VPN</span>
+                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">More</span>
+                    </div>
+                    <a href="category.html?cat=other" class="text-green-500 hover:text-green-700 font-medium inline-flex items-center">
+                        View All <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section id="featured" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800">Featured Products</h2>
+                <p class="text-gray-600 mt-2">Our most popular digital solutions for MMO professionals</p>
+            </div>
+            
+            <!-- Tabs Navigation -->
+            <div class="flex justify-center mb-8 border-b">
+                <button class="px-4 py-2 text-lg font-medium tab-active" data-tab="all">All Products</button>
+                <button class="px-4 py-2 text-lg font-medium text-gray-500 hover:text-green-500" data-tab="email">Email</button>
+                <button class="px-4 py-2 text-lg font-medium text-gray-500 hover:text-green-500" data-tab="account">Accounts</button>
+                <button class="px-4 py-2 text-lg font-medium text-gray-500 hover:text-green-500" data-tab="other">Software & Keys</button>
+            </div>
+            
+            <!-- Products Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Product 1 -->
+                <div class="product-card bg-white shadow-md overflow-hidden">
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/300x200/f4f4f4/27ae60?text=Gmail+Accounts" alt="Gmail Accounts" class="w-full h-48 object-cover">
+                        <span class="discount-badge">-25%</span>
+                        <div class="card-buttons">
+                            <div class="flex space-x-2">
+                                <a href="product.html?id=1" class="bg-white text-green-500 px-3 py-1 rounded-full text-sm font-medium hover:bg-green-500 hover:text-white transition">View Details</a>
+                                <button class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-green-600 transition">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-medium px-2 py-1 bg-green-100 text-green-600 rounded-full">Email</span>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                <span class="text-xs ml-1 text-gray-600">4.9 (124)</span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Gmail PVA Accounts</h3>
+                        <p class="text-sm text-gray-600 mb-3">Phone verified Gmail accounts for marketing & business</p>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-gray-400 line-through text-sm">$20.00</span>
+                                <span class="text-green-600 font-bold ml-1">$15.00</span>
+                            </div>
+                            <span class="text-xs text-gray-500">1,240+ sold</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card bg-white shadow-md overflow-hidden">
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/300x200/f4f4f4/27ae60?text=Facebook+Accounts" alt="Facebook Accounts" class="w-full h-48 object-cover">
+                        <span class="discount-badge">-20%</span>
+                        <div class="card-buttons">
+                            <div class="flex space-x-2">
+                                <a href="product.html?id=2" class="bg-white text-green-500 px-3 py-1 rounded-full text-sm font-medium hover:bg-green-500 hover:text-white transition">View Details</a>
+                                <button class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-green-600 transition">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-medium px-2 py-1 bg-green-100 text-green-600 rounded-full">Account</span>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                <span class="text-xs ml-1 text-gray-600">4.8 (96)</span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Facebook PVA Accounts</h3>
+                        <p class="text-sm text-gray-600 mb-3">Aged Facebook accounts with friends, perfect for marketing</p>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-gray-400 line-through text-sm">$25.00</span>
+                                <span class="text-green-600 font-bold ml-1">$20.00</span>
+                            </div>
+                            <span class="text-xs text-gray-500">850+ sold</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card bg-white shadow-md overflow-hidden">
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/300x200/f4f4f4/27ae60?text=Windows+Keys" alt="Windows Keys" class="w-full h-48 object-cover">
+                        <span class="discount-badge">-30%</span>
+                        <div class="card-buttons">
+                            <div class="flex space-x-2">
+                                <a href="product.html?id=3" class="bg-white text-green-500 px-3 py-1 rounded-full text-sm font-medium hover:bg-green-500 hover:text-white transition">View Details</a>
+                                <button class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-green-600 transition">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-medium px-2 py-1 bg-green-100 text-green-600 rounded-full">Software</span>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                <span class="text-xs ml-1 text-gray-600">4.9 (215)</span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Windows 11 Pro Key</h3>
+                        <p class="text-sm text-gray-600 mb-3">Genuine lifetime activation for Windows 11 Professional</p>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-gray-400 line-through text-sm">$45.00</span>
+                                <span class="text-green-600 font-bold ml-1">$32.00</span>
+                            </div>
+                            <span class="text-xs text-gray-500">2,100+ sold</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card bg-white shadow-md overflow-hidden">
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/300x200/f4f4f4/27ae60?text=Instagram+Accounts" alt="Instagram Accounts" class="w-full h-48 object-cover">
+                        <span class="discount-badge">-15%</span>
+                        <div class="card-buttons">
+                            <div class="flex space-x-2">
+                                <a href="product.html?id=4" class="bg-white text-green-500 px-3 py-1 rounded-full text-sm font-medium hover:bg-green-500 hover:text-white transition">View Details</a>
+                                <button class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-green-600 transition">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-medium px-2 py-1 bg-green-100 text-green-600 rounded-full">Account</span>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                <span class="text-xs ml-1 text-gray-600">4.7 (83)</span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Instagram PVA Accounts</h3>
+                        <p class="text-sm text-gray-600 mb-3">Verified Instagram accounts ready for your marketing campaigns</p>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-gray-400 line-through text-sm">$18.00</span>
+                                <span class="text-green-600 font-bold ml-1">$15.00</span>
+                            </div>
+                            <span class="text-xs text-gray-500">760+ sold</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-10">
+                <a href="products.html" class="btn-primary inline-flex items-center">
+                    View All Products <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Arrivals & Best Sellers -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row gap-10">
+                <!-- New Arrivals -->
+                <div class="md:w-1/2">
+                    <div class="mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800">New Arrivals</h2>
+                        <p class="text-gray-600">Our latest additions to the catalog</p>
+                    </div>
+                    <div class="space-y-4">
+                        <!-- New Product 1 -->
+                        <div class="flex bg-white rounded-lg shadow-sm overflow-hidden">
+                            <img src="https://via.placeholder.com/120x120/f4f4f4/27ae60?text=Proton+Mail" alt="Proton Mail" class="w-24 h-24 object-cover">
+                            <div class="p-3 flex-grow">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-xs font-medium px-2 py-1 bg-blue-100 text-blue-600 rounded-full">New</span>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                        <span class="text-xs ml-1 text-gray-600">4.9</span>
+                                    </div>
+                                </div>
+                                <h3 class="font-medium text-gray-800">ProtonMail Premium</h3>
+                                <p class="text-xs text-gray-500 mb-2">Secure email accounts with encryption</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-green-600 font-bold">$22.00</span>
+                                    <a href="product.html?id=5" class="text-sm text-green-500 hover:text-green-700">View</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- New Product 2 -->
+                        <div class="flex bg-white rounded-lg shadow-sm overflow-hidden">
+                            <img src="https://via.placeholder.com/120x120/f4f4f4/27ae60?text=BM+Accounts" alt="Business Manager Accounts" class="w-24 h-24 object-cover">
+                            <div class="p-3 flex-grow">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-xs font-medium px-2 py-1 bg-blue-100 text-blue-600 rounded-full">New</span>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                        <span class="text-xs ml-1 text-gray-600">4.8</span>
+                                    </div>
+                                </div>
+                                <h3 class="font-medium text-gray-800">Facebook BM Accounts</h3>
+                                <p class="text-xs text-gray-500 mb-2">Business Manager accounts for ad campaigns</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-green-600 font-bold">$45.00</span>
+                                    <a href="product.html?id=6" class="text-sm text-green-500 hover:text-green-700">View</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- New Product 3 -->
+                        <div class="flex bg-white rounded-lg shadow-sm overflow-hidden">
+                            <img src="https://via.placeholder.com/120x120/f4f4f4/27ae60?text=Antivirus" alt="Antivirus Keys" class="w-24 h-24 object-cover">
+                            <div class="p-3 flex-grow">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-xs font-medium px-2 py-1 bg-blue-100 text-blue-600 rounded-full">New</span>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                        <span class="text-xs ml-1 text-gray-600">4.7</span>
+                                    </div>
+                                </div>
+                                <h3 class="font-medium text-gray-800">Kaspersky Antivirus</h3>
+                                <p class="text-xs text-gray-500 mb-2">1-year protection license keys</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-green-600 font-bold">$19.00</span>
+                                    <a href="product.html?id=7" class="text-sm text-green-500 hover:text-green-700">View</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Best Sellers -->
+                <div class="md:w-1/2">
+                    <div class="mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800">Best Sellers</h2>
+                        <p class="text-gray-600">Most popular products this month</p>
+                    </div>
+                    <div class="space-y-4">
+                        <!-- Best Seller 1 -->
+                        <div class="flex bg-white rounded-lg shadow-sm overflow-hidden">
+                            <img src="https://via.placeholder.com/120x120/f4f4f4/27ae60?text=Gmail" alt="Gmail Accounts" class="w-24 h-24 object-cover">
+                            <div class="p-3 flex-grow">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-xs font-medium px-2 py-1 bg-orange-100 text-orange-600 rounded-full">Hot</span>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                        <span class="text-xs ml-1 text-gray-600">5.0</span>
+                                    </div>
+                                </div>
+                                <h3 class="font-medium text-gray-800">Gmail Accounts (Bulk)</h3>
+                                <p class="text-xs text-gray-500 mb-2">Pack of 10 verified Gmail accounts</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-green-600 font-bold">$90.00</span>
+                                    <a href="product.html?id=8" class="text-sm text-green-500 hover:text-green-700">View</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Best Seller 2 -->
+                        <div class="flex bg-white rounded-lg shadow-sm overflow-hidden">
+                            <img src="https://via.placeholder.com/120x120/f4f4f4/27ae60?text=Windows" alt="Windows Keys" class="w-24 h-24 object-cover">
+                            <div class="p-3 flex-grow">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-xs font-medium px-2 py-1 bg-orange-100 text-orange-600 rounded-full">Hot</span>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                        <span class="text-xs ml-1 text-gray-600">4.9</span>
+                                    </div>
+                                </div>
+                                <h3 class="font-medium text-gray-800">Windows 10 Pro Key</h3>
+                                <p class="text-xs text-gray-500 mb-2">Lifetime activation guaranteed</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-green-600 font-bold">$25.00</span>
+                                    <a href="product.html?id=9" class="text-sm text-green-500 hover:text-green-700">View</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Best Seller 3 -->
+                        <div class="flex bg-white rounded-lg shadow-sm overflow-hidden">
+                            <img src="https://via.placeholder.com/120x120/f4f4f4/27ae60?text=TikTok" alt="TikTok Accounts" class="w-24 h-24 object-cover">
+                            <div class="p-3 flex-grow">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-xs font-medium px-2 py-1 bg-orange-100 text-orange-600 rounded-full">Hot</span>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                        <span class="text-xs ml-1 text-gray-600">4.8</span>
+                                    </div>
+                                </div>
+                                <h3 class="font-medium text-gray-800">TikTok Verified Accounts</h3>
+                                <p class="text-xs text-gray-500 mb-2">With followers for instant engagement</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-green-600 font-bold">$35.00</span>
+                                    <a href="product.html?id=10" class="text-sm text-green-500 hover:text-green-700">View</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Stats Section -->
+    <section class="stats-container py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="text-4xl font-bold mb-2">10k+</div>
+                    <p class="text-green-200">Happy Customers</p>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold mb-2">50k+</div>
+                    <p class="text-green-200">Products Sold</p>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold mb-2">99.8%</div>
+                    <p class="text-green-200">Success Rate</p>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold mb-2">24/7</div>
+                    <p class="text-green-200">Customer Support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800">What Our Customers Say</h2>
+                <p class="text-gray-600 mt-2">Real feedback from MMO professionals around the world</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card bg-white shadow-md p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-500 font-bold text-xl mr-4">
+                            J
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">John D.</h4>
+                            <p class="text-sm text-gray-500">Affiliate Marketer, USA</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"The Gmail accounts I purchased have been excellent for my email marketing campaigns. Delivery was instant and all accounts are working perfectly. Will definitely buy again!"</p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card bg-white shadow-md p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-500 font-bold text-xl mr-4">
+                            M
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Maria S.</h4>
+                            <p class="text-sm text-gray-500">Social Media Manager, Brazil</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"I've been using the Facebook Business Manager accounts for my client's ad campaigns and they've been working flawlessly. Great service and quick support when needed."</p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card bg-white shadow-md p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-500 font-bold text-xl mr-4">
+                            R
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Robert L.</h4>
+                            <p class="text-sm text-gray-500">Digital Entrepreneur, UK</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"The Windows keys I purchased are genuine and activated without any issues. Saved a lot of money compared to official prices. Highly recommended for all digital needs."</p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-green-500 text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-4">Ready to Boost Your MMO Business?</h2>
+                <p class="text-xl mb-8">Get access to premium digital products at the best prices on the market</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#categories" class="bg-white text-green-500 hover:bg-gray-100 font-medium py-3 px-8 rounded-lg transition">Explore Products</a>
+                    <a href="register.html" class="bg-transparent hover:bg-green-400 border-2 border-white font-medium py-3 px-8 rounded-lg transition">Create Account</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Badges -->
+    <section class="py-8 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-center items-center gap-8">
+                <div class="flex items-center">
+                    <i class="fas fa-shield-alt text-2xl text-green-500 mr-2"></i>
+                    <span class="text-gray-700">Secure Payments</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-truck text-2xl text-green-500 mr-2"></i>
+                    <span class="text-gray-700">Instant Delivery</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-headset text-2xl text-green-500 mr-2"></i>
+                    <span class="text-gray-700">24/7 Support</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-undo text-2xl text-green-500 mr-2"></i>
+                    <span class="text-gray-700">Money-Back Guarantee</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- About -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Digital Deals Hub</h3>
+                    <p class="text-gray-400 mb-4">Premium digital products and services for MMO professionals. Trusted by thousands of customers worldwide.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Products -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Products</h3>
+                    <ul class="space-y-2">
+                        <li><a href="category.html?cat=email" class="text-gray-400 hover:text-white">Email Accounts</a></li>
+                        <li><a href="category.html?cat=account" class="text-gray-400 hover:text-white">Social Media Accounts</a></li>
+                        <li><a href="category.html?cat=other" class="text-gray-400 hover:text-white">Software & Keys</a></li>
+                        <li><a href="products.html" class="text-gray-400 hover:text-white">All Products</a></li>
+                        <li><a href="sale.html" class="text-gray-400 hover:text-white">Special Offers</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Customer Service -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Customer Service</h3>
+                    <ul class="space-y-2">
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                        <li><a href="faq.html" class="text-gray-400 hover:text-white">FAQ</a></li>
+                        <li><a href="terms.html" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="refund.html" class="text-gray-400 hover:text-white">Refund Policy</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope text-green-500 mt-1 mr-2"></i>
+                            <span class="text-gray-400">support@digitaldeals.hub</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-clock text-green-500 mt-1 mr-2"></i>
+                            <span class="text-gray-400">24/7 Support Available</span>
+                        </li>
+                    </ul>
+                    <div class="mt-6">
+                        <h4 class="font-bold text-sm uppercase text-gray-400 mb-2">Payment Methods</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <img src="https://via.placeholder.com/60x30/ffffff/333333?text=Visa" alt="Visa" class="h-6">
+                            <img src="https://via.placeholder.com/60x30/ffffff/333333?text=Mastercard" alt="Mastercard" class="h-6">
+                            <img src="https://via.placeholder.com/60x30/ffffff/333333?text=PayPal" alt="PayPal" class="h-6">
+                            <img src="https://via.placeholder.com/60x30/ffffff/333333?text=Bitcoin" alt="Bitcoin" class="h-6">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center">
+                <p class="text-gray-400">© 2023 Digital Deals Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Live Chat Button -->
+    <div class="fixed bottom-6 right-6 z-40">
+        <button class="bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-lg">
+            <i class="fas fa-comments text-xl"></i>
+        </button>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.add('active');
+        });
+        
+        document.getElementById('close-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.remove('active');
+        });
+        
+        // Mobile Submenu Toggle
+        document.getElementById('mobile-products-btn').addEventListener('click', function() {
+            document.getElementById('mobile-products-submenu').classList.toggle('hidden');
+        });
+        
+        // Product Tabs
+        const tabButtons = document.querySelectorAll('[data-tab]');
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('tab-active');
+                    btn.classList.add('text-gray-500');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('tab-active');
+                this.classList.remove('text-gray-500');
+                
+                // Here you would normally filter products based on the tab
+                // For this static HTML, we're just changing the button styles
+            });
+        });
+    </script>
+</body>
+</html>
